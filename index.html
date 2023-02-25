@@ -6,7 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>サンプル</title>
   </head>
+  <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@1.0.1/dist/browser.script.iife.js"></script>
   <body>
-    こんにちは
+    <button id="btn">サイコロを振る</button>
+    <div id="result">サイコロを振ってください</div>
+    <script type="text/ruby">
+      require 'js'
+
+      @document = JS.global[:document]
+
+      button = @document.getElementById('btn')
+      button.addEventListener('click') do
+        result_element = @document.getElementById('result')
+        result_element[:innerText] = [*1..6].sample
+      end
+    </script>
   </body>
 </html>
